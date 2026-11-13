@@ -38,6 +38,16 @@ Write ONE paragraph of 100-150 words that answers these three questions.
 
 -------------------------------------------------------------------------------
 YOUR REFLECTION (write here, then delete everything above the declaration):
+Finish each sentence in your own words (about 20-30 words each), then join
+them into one paragraph and delete the [brackets].
 
+The most helpful AI suggestion was [ ... ], because [ ... ].
 
+The AI was wrong when it [ ... ], for example [ ... ].
+
+I found this problem by [ ... ].
+
+I learned that to check AI-generated R code I need to [ ... ].
+
+Next time I would write my prompt differently by [ ... ].
 
