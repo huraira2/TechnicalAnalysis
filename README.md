@@ -9,7 +9,7 @@ This is a three-stage project, and each assignment is kept in its own folder.
 |--------|------------|--------|
 | [`Assignment2/`](Assignment2) | Assignment 2 – Technical Analysis using R, Preliminary Stage | Complete |
 | [`Assignment3/`](Assignment3) | Assignment 3 – Prompting R Functions with AI (outlier-removal function, tests, reflection) | Complete |
-| `Assignment4/` | Assignment 4 – *coming soon* | – |
+| [`Assignment4/`](Assignment4) | Assignment 4 – Ask AI: Clean This Dataset with R and dplyr | In progress (reflection to add) |
 
 ## Assignment 2 contents
 
