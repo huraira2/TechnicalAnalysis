@@ -20,6 +20,7 @@ This is a three-stage project, and each assignment is kept in its own folder.
 | `A02/Nadeeka_BDA400_A02.Rmd` | R Markdown that imports, displays, summarises and visualises the data |
 | `A02/Nadeeka_BDA400_A02.html` | Knitted output of the R Markdown file |
 | `A02/Nadeeka_BDA400_A02_Report.docx` | Step-by-step report with screenshots |
+| `A02/Nadeeka_BDA400_A02.docx` | Cover page with student details and repository link |
 | `A02/output/` | CSV exports of the downloaded prices and summary statistics |
 
 ## How to run
