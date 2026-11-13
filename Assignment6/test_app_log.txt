@@ -1,0 +1,27 @@
+
+== Charts for every chart type, time frame and rule ==
+  PASS  candle_daily_ma   251 bars,  5 trades, signal Sell 
+  PASS  line_all_macd     251 bars, 24 trades, signal Buy 
+  PASS  area_weekly_rsi    53 bars,  1 trades, signal Hold 
+  PASS  ohlc_monthly       13 bars,  0 trades, signal Buy 
+  PASS  candle_no_ind      53 bars,  2 trades, signal Sell 
+  PASS  candle_ema_label   53 bars,  3 trades, signal Sell 
+  data source: Yahoo Finance (live) 
+
+== Trading rule logic ==
+  PASS  MA rule: every Buy bar has short MA above long MA (and below the bar before) 
+  PASS  MA rule: every Sell bar has short MA below long MA 
+  PASS  MA rule: Signal matches the brief's ifelse() 
+  PASS  Buy and Sell actions alternate 
+  PASS  Signals table lists every trade 
+  PASS  Portfolio table has all 5 stocks 
+  PASS  Portfolio chart renders 
+
+== Error handling ==
+  PASS  Unknown ticker gives a message 
+  PASS  Short MA >= long MA gives a message 
+  PASS  Start after end gives a message 
+  PASS  Offline CSV source works 
+  PASS  Ticker missing from the offline CSV gives a message 
+
+== RESULT: 18 passed, 0 failed ==  (charts saved in a temporary folder)

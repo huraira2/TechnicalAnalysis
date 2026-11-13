@@ -11,6 +11,7 @@ Each assignment is kept in its own folder.
 | [`Assignment3/`](Assignment3) | Assignment 3 – Prompting R Functions with AI (outlier-removal function, tests, reflection) | Complete |
 | [`Assignment4/`](Assignment4) | Assignment 4 – Ask AI: Clean This Dataset with R and dplyr | In progress (reflection to add) |
 | [`Assignment5/`](Assignment5) | Assignment 5 – Technical Analysis using R, Development Phase (nine base-R indicators, tests, portfolio demo) | Complete |
+| [`Assignment6/`](Assignment6) | Assignment 6 – Technical Analysis using R, Visualization Phase (R Shiny portfolio dashboard with indicators and trading signals) | Complete |
 
 ## Assignment 2 contents
 
