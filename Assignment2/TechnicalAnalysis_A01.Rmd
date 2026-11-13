@@ -1,0 +1,201 @@
+---
+title: "Technical Analysis using R – Preliminary Stage"
+subtitle: "BDA400 Assignment 2"
+author: "Nadeeka (Student ID: 664430944)"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    theme: default
+    highlight: tango
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.width = 8, fig.height = 4.5)
+```
+
+# 1. Setup
+
+Load the packages used for technical analysis. They were installed once with
+`install.packages(c("quantmod", "TTR"))`.
+
+```{r packages}
+library(quantmod)   # getSymbols(), chartSeries()
+library(TTR)        # SMA() moving average
+```
+
+# 2. Project Configuration
+
+The list of stock symbols making up the portfolio is stored in a plain text file, `portfolio.txt`, one symbol per line. This keeps the portfolio easy to edit without touching the code.
+
+```{r portfolio}
+portfolio_path <- "portfolio.txt"
+cat(readLines(portfolio_path), sep = "\n")
+```
+
+# 3. Function: Import and Load Stock Data
+
+`load_stock_data()` reads the symbols from `portfolio.txt` and downloads historical OHLC (Open/High/Low/Close/Volume/Adjusted) data for each symbol using `quantmod::getSymbols()`. Each stock's data is returned as a separate `xts`/data frame object inside a named list, keyed by ticker symbol.
+
+```{r load-function}
+load_stock_data <- function(portfolio_file = "portfolio.txt",
+                            src = "yahoo",
+                            from = Sys.Date() - 365,
+                            to = Sys.Date()) {
+
+  # Read the stock symbols from the portfolio file, one per line
+  symbols <- readLines(portfolio_file)
+  symbols <- trimws(symbols)
+  symbols <- symbols[symbols != ""]
+
+  stock_data <- list()
+
+  for (sym in symbols) {
+    message("Downloading data for: ", sym)
+
+    result <- tryCatch({
+      getSymbols(sym,
+                 src = src,
+                 from = from,
+                 to = to,
+                 auto.assign = FALSE)
+    }, error = function(e) {
+      warning("Failed to download ", sym, ": ", conditionMessage(e))
+      NULL
+    })
+
+    if (!is.null(result)) {
+      # Convert xts to a data frame with a Date column and clean names
+      df <- data.frame(Date = index(result), coredata(result))
+      colnames(df) <- c("Date", "Open", "High", "Low", "Close", "Volume", "Adjusted")
+      stock_data[[sym]] <- df
+    }
+  }
+
+  return(stock_data)
+}
+```
+
+The analysis window is fixed to one year (24 Aug 2025 – 24 Aug 2026) so the results are reproducible.
+
+```{r load-data}
+stocks <- load_stock_data("portfolio.txt",
+                          from = as.Date("2025-08-24"),
+                          to   = as.Date("2026-08-24"))
+names(stocks)
+sapply(stocks, nrow)
+```
+
+# 4. Function: Compute Basic Statistics
+
+`calculate_statistics()` takes a single stock's data frame (as produced by `load_stock_data()`) and computes:
+
+- **Moving average** (20-day Simple Moving Average of the closing price, via `TTR::SMA`)
+- **Mean** closing price
+- **Mode** closing price (R has no built-in `mode()` for this, so a helper is defined)
+- **Median** closing price
+- **Standard deviation** of the closing price
+
+```{r mode-function}
+# Base R has no statistical mode function - define one
+get_mode <- function(x) {
+  x <- x[!is.na(x)]
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+```
+
+```{r stats-function}
+calculate_statistics <- function(stock_df, ma_period = 20) {
+
+  close_prices <- stock_df$Close
+
+  moving_avg <- TTR::SMA(close_prices, n = ma_period)
+
+  summary_stats <- data.frame(
+    Mean        = mean(close_prices, na.rm = TRUE),
+    Mode        = get_mode(close_prices),
+    Median      = median(close_prices, na.rm = TRUE),
+    SD          = sd(close_prices, na.rm = TRUE),
+    Latest_MA20 = tail(moving_avg, 1)
+  )
+
+  list(summary_stats = summary_stats,
+       moving_average = moving_avg)
+}
+
+all_stats <- lapply(stocks, calculate_statistics)
+```
+
+# 5. Display Utilities
+
+## 5.1 Display the loaded data
+
+```{r display-data-function}
+display_stock_data <- function(stock_list, n = 5) {
+  for (sym in names(stock_list)) {
+    df <- stock_list[[sym]]
+    cat("\n=====", sym, "=====",
+        nrow(df), "trading days from", format(min(df$Date)),
+        "to", format(max(df$Date)), "\n")
+    print(head(df, n), row.names = FALSE)
+  }
+}
+
+display_stock_data(stocks)
+```
+
+## 5.2 Display computed statistics (table form)
+
+```{r display-stats}
+display_statistics <- function(stats_list) {
+  combined <- do.call(rbind, lapply(names(stats_list), function(sym) {
+    row <- stats_list[[sym]]$summary_stats
+    cbind(Symbol = sym, row)
+  }))
+  rownames(combined) <- NULL
+  combined
+}
+
+display_statistics(all_stats)
+```
+
+## 5.3 Visualize: price chart with moving average
+
+```{r ma-plots}
+for (sym in names(stocks)) {
+  df <- stocks[[sym]]
+  ma <- all_stats[[sym]]$moving_average
+
+  plot(df$Date, df$Close, type = "l",
+       main = paste(sym, "- Closing Price with 20-Day SMA"),
+       xlab = "Date", ylab = "Price (USD)", col = "steelblue")
+  lines(df$Date, ma, col = "darkorange", lwd = 2)
+  legend("topleft", legend = c("Close", "SMA(20)"),
+         col = c("steelblue", "darkorange"), lty = 1, cex = 0.8)
+}
+```
+
+## 5.4 Visualize: candlestick chart (quantmod)
+
+```{r candlesticks, fig.height = 5.5}
+for (sym in names(stocks)) {
+  df <- stocks[[sym]]
+  xts_obj <- xts::xts(df[, c("Open", "High", "Low", "Close", "Volume", "Adjusted")],
+                      order.by = df$Date)
+  chartSeries(xts_obj, name = sym, theme = chartTheme("white"))
+}
+```
+
+# 6. Summary
+
+This preliminary stage set up the project scaffolding for the technical analysis project:
+
+- `portfolio.txt` holds the five ticker symbols (AAPL, MSFT, GOOGL, AMZN, TSLA).
+- `load_stock_data()` imports one year of daily prices for every symbol with **quantmod** and stores each stock as its own data frame.
+- `calculate_statistics()` computes the 20-day moving average, mean, mode, median and standard deviation of the closing price.
+- `display_stock_data()`, `display_statistics()` and the chart loops display the data as tables, line charts and candlestick charts.
+
+These functions will be reused and extended in the next two stages of the project.
