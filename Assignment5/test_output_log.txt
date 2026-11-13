@@ -1,0 +1,115 @@
+
+== 1. Examples from the assignment brief ==
+
+sma(c(10,12,15,20,18,22,25,24,21), 3):
+[1] 12.33333 15.66667 17.66667 20.00000 21.66667 23.66667 23.33333
+
+ema(c(10,12,15,20,18,22,25,24,21), 3):
+[1] 10.00000 11.00000 13.00000 16.50000 17.25000 19.62500 22.31250 23.15625
+[9] 22.07812
+
+macd(c(100,105,110,115,120,125,130), 3, 5, 2):
+$macd_line
+[1] 0.0000000 0.8333333 1.8055556 2.6620370 3.3371914 3.8393776 4.2002100
+
+$signal_line
+[1] 0.0000000 0.5555556 1.3888889 2.2376543 2.9706790 3.5498114 3.9834105
+
+$histogram
+[1] 0.0000000 0.2777778 0.4166667 0.4243827 0.3665123 0.2895662 0.2167996
+
+
+stdev(c(10,12,15,20,18,22,25,24,21)):
+[1] 4.946629
+
+linreg(c(10,12,15,20,18,22,25,24,21), 5, 0):
+$slope
+[1] 0.8
+
+$intercept
+[1] 19.6
+
+$predicted_values
+[1] 20.4 21.2 22.0 22.8 23.6
+
+
+rsi(c(45,50,48,55,52,49,58,60,65,62), 5):
+ [1]       NA       NA       NA       NA       NA 60.00000 74.40000 76.72727
+ [9] 81.87611 70.22391
+
+stoch_rsi(same data, 14, 3, 3)  - 10 prices are not enough for period 14:
+$k_line
+[1] NA NA NA NA NA NA NA NA
+
+$d_line
+[1] NA NA NA NA NA NA
+
+
+stoch_rsi(same data, 3, 3, 3):
+$k_line
+[1]        NA        NA        NA 0.4662402 0.3861861 0.5119874 0.8453207
+[8] 0.7565665
+
+$d_line
+[1]        NA        NA        NA 0.4548046 0.5811647 0.7046248
+
+
+crossover(arr1, arr2):
+[1] "None" "None" "None" "Up"   "None" "None" "None" "None" "None"
+
+crossunder(arr1, arr2):
+[1] "None"  "False" "False" "False" "False" "False" "False" "False" "False"
+
+== 2. Answers worked out by hand ==
+  PASS  sma period 3 first value = (10+12+15)/3
+  PASS  sma returns n - period + 1 values
+  PASS  sma period = length gives the overall mean
+  PASS  sma period 1 returns the data unchanged
+  PASS  ema first value = first price
+  PASS  ema second value = (12-10)*0.5 + 10 = 11
+  PASS  ema same length as data
+  PASS  ema of a constant series stays constant
+  PASS  macd histogram = macd_line - signal_line
+  PASS  macd line = ema(3) - ema(5)
+  PASS  macd list names
+  PASS  stdev of c(2,4,4,4,5,5,7,9) = 2 (textbook example)
+  PASS  stdev of a constant series = 0
+  PASS  linreg on a straight line: slope 2
+  PASS  linreg on a straight line: intercept 0
+  PASS  linreg predicted values = the line
+  PASS  linreg uses exactly the last 5 points
+  PASS  linreg on the last 5 points (18,22,25,24,21): slope 0.8
+  PASS  rsi first 'period' values are NA
+  PASS  rsi values between 0 and 100
+  PASS  rsi of a rising series = 100
+  PASS  rsi of a falling series = 0
+  PASS  crossover finds the Up cross at point 4
+  PASS  crossover finds a Down cross
+  PASS  crossunder is True where arr1 drops below arr2
+  PASS  crossunder example has no True (arr1 only crosses upward)
+  PASS  stoch_rsi %K between 0 and 1
+  PASS  stoch_rsi %D = 3-point SMA of %K
+  PASS  stoch_rsi with too little data gives NA, not an error
+
+== 3. Error messages and edge cases ==
+  PASS  sma: data shorter than period
+  PASS  linreg: length too long
+  PASS  linreg: offset >= length
+  PASS  crossover: different lengths
+  PASS  crossunder: different lengths
+  PASS  crossover ignores NA points
+  PASS  rsi with too little data warns and returns NA
+  PASS  rsi warning message is shown
+
+== 4. Compared with trusted R functions (random data, 500 prices) ==
+  PASS  stdev = sd() * sqrt((n-1)/n)  (population vs sample)
+  PASS  linreg slope = lm() slope
+  PASS  linreg intercept = lm() intercept
+  PASS  linreg predicted = lm() fitted values
+  PASS  linreg with offset 10 uses points 441 to 490
+  PASS  sma = stats::filter moving average
+  PASS  ema = stats::filter recursive form
+  PASS  sma = TTR::SMA (non-NA part)
+  PASS  rsi = TTR::RSI (Wilder, period 14)
+
+== RESULT: 46 passed, 0 failed ==

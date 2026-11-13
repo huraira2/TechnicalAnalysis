@@ -1,7 +1,7 @@
 # TechnicalAnalysis
 
 Stock-market technical analysis in R for **BDA400 – Data Science Tools and Techniques**.
-This is a three-stage project, and each assignment is kept in its own folder.
+Each assignment is kept in its own folder.
 
 **Author:** Nadeeka (Student ID: 664430944)
 
@@ -10,6 +10,7 @@ This is a three-stage project, and each assignment is kept in its own folder.
 | [`Assignment2/`](Assignment2) | Assignment 2 – Technical Analysis using R, Preliminary Stage | Complete |
 | [`Assignment3/`](Assignment3) | Assignment 3 – Prompting R Functions with AI (outlier-removal function, tests, reflection) | Complete |
 | [`Assignment4/`](Assignment4) | Assignment 4 – Ask AI: Clean This Dataset with R and dplyr | In progress (reflection to add) |
+| [`Assignment5/`](Assignment5) | Assignment 5 – Technical Analysis using R, Development Phase (nine base-R indicators, tests, portfolio demo) | Complete |
 
 ## Assignment 2 contents
 

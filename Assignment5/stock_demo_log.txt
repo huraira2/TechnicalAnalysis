@@ -1,0 +1,81 @@
+
+================ AAPL (250 days, 2025-08-25 to 2026-08-21) ================
+Last close 309.35 | SMA20 314.34 | SMA50 310.21 | EMA20 312.04
+MACD -1.574 | Signal -1.194 | Histogram -0.380
+RSI14 47.3 | StochRSI %K 0.52 | %D 0.51
+20-day st. dev. 11.95 | 20-day trend slope -1.317 per day
+SMA20/SMA50 crossovers:
+   2026-01-07  Down  (sell signal)
+   2026-02-23  Up  (buy signal)
+   2026-03-18  Down  (sell signal)
+   2026-04-23  Up  (buy signal)
+   2026-07-07  Down  (sell signal)
+   2026-07-09  Up  (buy signal)
+MACD crosses: 8 up, 8 down | days closing below SMA50 (crossunder): 7
+
+================ MSFT (250 days, 2025-08-25 to 2026-08-21) ================
+Last close 483.24 | SMA20 473.09 | SMA50 419.84 | EMA20 469.98
+MACD 19.922 | Signal 23.246 | Histogram -3.324
+RSI14 62.4 | StochRSI %K 0.71 | %D 0.71
+20-day st. dev. 36.69 | 20-day trend slope 4.058 per day
+SMA20/SMA50 crossovers:
+   2025-11-19  Down  (sell signal)
+   2026-04-27  Up  (buy signal)
+   2026-06-22  Down  (sell signal)
+   2026-08-03  Up  (buy signal)
+MACD crosses: 10 up, 11 down | days closing below SMA50 (crossunder): 4
+
+================ GOOGL (250 days, 2025-08-25 to 2026-08-21) ================
+Last close 344.82 | SMA20 348.40 | SMA50 351.77 | EMA20 347.66
+MACD -2.297 | Signal -1.701 | Histogram -0.595
+RSI14 47.2 | StochRSI %K 0.32 | %D 0.32
+20-day st. dev. 12.60 | 20-day trend slope -0.009 per day
+SMA20/SMA50 crossovers:
+   2026-02-26  Down  (sell signal)
+   2026-04-21  Up  (buy signal)
+   2026-06-23  Down  (sell signal)
+MACD crosses: 10 up, 11 down | days closing below SMA50 (crossunder): 6
+
+================ AMZN (250 days, 2025-08-25 to 2026-08-21) ================
+Last close 258.63 | SMA20 261.38 | SMA50 249.73 | EMA20 260.78
+MACD 3.461 | Signal 4.999 | Histogram -1.538
+RSI14 49.7 | StochRSI %K 0.50 | %D 0.51
+20-day st. dev. 16.55 | 20-day trend slope 1.127 per day
+SMA20/SMA50 crossovers:
+   2025-11-06  Up  (buy signal)
+   2025-12-12  Down  (sell signal)
+   2026-01-14  Up  (buy signal)
+   2026-02-11  Down  (sell signal)
+   2026-04-13  Up  (buy signal)
+   2026-06-16  Down  (sell signal)
+   2026-08-04  Up  (buy signal)
+MACD crosses: 11 up, 11 down | days closing below SMA50 (crossunder): 8
+
+================ TSLA (250 days, 2025-08-25 to 2026-08-21) ================
+Last close 362.86 | SMA20 328.14 | SMA50 365.86 | EMA20 342.10
+MACD -3.328 | Signal -9.557 | Histogram 6.229
+RSI14 58.0 | StochRSI %K 0.52 | %D 0.47
+20-day st. dev. 15.94 | 20-day trend slope 2.607 per day
+SMA20/SMA50 crossovers:
+   2025-11-21  Down  (sell signal)
+   2025-12-17  Up  (buy signal)
+   2026-01-27  Down  (sell signal)
+   2026-05-08  Up  (buy signal)
+   2026-06-25  Down  (sell signal)
+MACD crosses: 15 up, 14 down | days closing below SMA50 (crossunder): 13
+
+================ Portfolio summary (latest day) ================
+  Symbol  Close  SMA20  SMA50 RSI14 MACD_Hist StDev20 Slope20 Golden_Up
+1   AAPL 309.35 314.34 310.21  47.3    -0.380   11.95  -1.317         3
+2   MSFT 483.24 473.09 419.84  62.4    -3.324   36.69   4.058         2
+3  GOOGL 344.82 348.40 351.77  47.2    -0.595   12.60  -0.009         1
+4   AMZN 258.63 261.38 249.73  49.7    -1.538   16.55   1.127         4
+5   TSLA 362.86 328.14 365.86  58.0     6.229   15.94   2.607         2
+  Golden_Dn
+1         3
+2         2
+3         2
+4         3
+5         3
+
+Saved indicator_summary.csv and charts/<SYMBOL>_indicators.png
