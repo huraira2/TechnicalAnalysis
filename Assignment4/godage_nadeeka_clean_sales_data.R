@@ -1,8 +1,8 @@
 # =============================================================================
-# clean_sales_data.R
+# godage_nadeeka_clean_sales_data.R
 # BDA400 - Data Science Tools and Techniques
 # Assignment 4: Ask AI - Clean This Dataset with R and dplyr
-# Author : Nadeeka (Student ID: 664430944)
+# Author : Nadeeka Godage (Student ID: 664430944)
 # Date   : November 13, 2026        R 4.6.1, dplyr 1.2.1
 #
 # AI Assistance Declaration: I used Claude (Anthropic, Opus 5.5) for suggesting

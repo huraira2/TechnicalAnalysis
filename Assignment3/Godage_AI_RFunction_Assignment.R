@@ -1,15 +1,15 @@
 # =============================================================================
-# Nadeeka_AI_RFunction_Assignment.R
+# Godage_AI_RFunction_Assignment.R
 # BDA400 - Data Science Tools and Techniques
 # Assignment 3: Prompting R Functions with AI
-# Author : Nadeeka (Student ID: 664430944)
+# Author : Nadeeka Godage (Student ID: 664430944)
 # Date   : November 13, 2026
 # R      : 4.6.1 (RStudio 2026.08.1)
 #
 # AI Assistance Declaration: I used Claude (Anthropic, Opus 5.5) for drafting
 # the R function and its comments through the prompt sequence listed below.
 # Prompts used: see the PROMPT LOG section of this file and the Appendix in
-# Nadeeka_Reflection.docx. I verified outputs using manual calculation of the
+# Godage_Reflection.docx. I verified outputs using manual calculation of the
 # quartiles and fences, comparison with base R boxplot.stats() on 1,000 random
 # synthetic vectors, and edge-case tests. All final calculations are done by
 # myself. I am responsible for the accuracy and originality of this work.
@@ -160,7 +160,7 @@ remove_outliers <- function(x, k = 1.5, method = c("tukey", "quantile"),
 
 
 # =============================================================================
-# TESTS - run with source("Nadeeka_AI_RFunction_Assignment.R", echo = TRUE)
+# TESTS - run with source("Godage_AI_RFunction_Assignment.R", echo = TRUE)
 # Only synthetic data is used.
 # =============================================================================
 
