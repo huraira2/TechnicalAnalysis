@@ -1,0 +1,43 @@
+*** PLACEHOLDER - REPLACE THIS WHOLE FILE WITH YOUR OWN REFLECTION BEFORE SUBMITTING ***
+The brief says: "Use your own words. Do not use AI to write this reflection."
+
+BDA400 Assignment 4 - Reflection
+Student: Nadeeka Godage (ID: 664430944)
+
+AI Assistance Declaration: I used Claude (Anthropic, Opus 5.5) for suggesting
+dplyr cleaning steps, explaining code and debugging errors. Prompts used: see
+the AI PROMPT LOG in godage_nadeeka_clean_sales_data.R. I verified outputs using
+before/after summaries, NA and duplicate counts, stopifnot() checks and a base-R
+revenue cross-check. All final calculations are done by myself. I am responsible
+for the accuracy and originality of this work. This reflection is written by me
+without AI.
+
+-------------------------------------------------------------------------------
+Write ONE paragraph of 100-150 words that answers these three questions.
+-------------------------------------------------------------------------------
+
+1. Which AI suggestions were helpful or inaccurate?
+   Notes from your work:
+   - Helpful: combining steps into one mutate(), coalesce() for missing
+     product labels, stopifnot() checks.
+   - Inaccurate: first code used CustomerID/Region/Revenue, which are not in
+     the file -> "object 'CustomerID' not found".
+   - Inaccurate: filter(!is.na(Product)) missed 35 blank products ("" not NA).
+   - Inaccurate: median imputation of Quantity would have invented 94 sales.
+   - Lucky: quantile(0.99) cutoff only worked because it equalled 1000.
+
+2. What did you learn about verifying AI-generated R code?
+   Notes: code that runs is not necessarily correct; compare nrow(), NA counts
+   and table() before and after; recalculate the revenue total a second way
+   (dplyr and base R both gave $1,110,768).
+
+3. How could you improve your prompt phrasing next time?
+   Notes: give the real column names and types (names(), str()), say that
+   blanks are empty strings, say "do not impute missing values", and give
+   the valid range for Quantity.
+
+-------------------------------------------------------------------------------
+YOUR REFLECTION (write here, then delete everything above the declaration):
+
+
+
