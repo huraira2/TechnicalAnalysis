@@ -16,6 +16,7 @@ It builds on the earlier stages:
 | `test_app.R` / `test_app_log.txt` | Server tests with `shiny::testServer()` (18 checks: every chart type, time frame, rule and error case) |
 | `screenshots/` | Screenshots of the running app |
 | `NadeekaGodage_BDA400_A06.docx` / `.pdf` | Cover page, project description and walkthrough |
+| `NadeekaGodage_BDA400_A06.zip` | Everything above in one self-contained folder, including copies of the Assignment 5 indicators, the offline prices and the portfolio, so the app runs on its own |
 
 ## How to run
 
@@ -24,7 +25,9 @@ install.packages(c("shiny", "bslib", "ggplot2", "quantmod", "patchwork", "scales
 shiny::runApp("Assignment6")   # run from the repository folder
 ```
 
-You can also open `app.R` in RStudio and click **Run App**. Keep the whole repository together, because the app reads `../Assignment2` and `../Assignment5`.
+You can also open `app.R` in RStudio and click **Run App**. In the repository, the app reads `../Assignment2` (portfolio) and `../Assignment5` (indicators and offline prices).
+
+**From the zip (`NadeekaGodage_BDA400_A06.zip`):** the zip is self-contained. Copies of the Assignment 5 indicators and the offline prices are in `indicators/`, and the portfolio is in `portfolio.txt`. Unzip it, open `app.R` in RStudio and click **Run App**, or run `shiny::runApp("NadeekaGodage_BDA400_A06")` from the folder that contains it.
 
 ## Features
 

@@ -50,8 +50,9 @@ suppressPackageStartupMessages({
 })
 
 # ---- 1b. Re-use the indicators written in Assignment 5 (base R only) --------
-# The app is run from the Assignment6 folder, so the previous part is one level up.
-indicator_dir <- if (dir.exists("../Assignment5")) "../Assignment5" else "Assignment5"
+# In the repository the previous part is one level up (../Assignment5).
+# In the stand-alone zip the same files are in the local "indicators" folder.
+indicator_dir <- if (dir.exists("../Assignment5")) "../Assignment5" else "indicators"
 for (f in c("sma.R", "ema.R", "macd.R", "rsi.R", "stdev.R", "linreg.R",
             "crossover.R", "crossunder.R")) {
   source(file.path(indicator_dir, f), local = TRUE)
@@ -64,7 +65,7 @@ for (f in c("sma.R", "ema.R", "macd.R", "rsi.R", "stdev.R", "linreg.R",
 offline_csv <- file.path(indicator_dir, "stock_prices.csv")
 
 # Portfolio from Assignment 2 (falls back to the same five symbols)
-portfolio_file <- "../Assignment2/portfolio.txt"
+portfolio_file <- if (file.exists("../Assignment2/portfolio.txt")) "../Assignment2/portfolio.txt" else "portfolio.txt"
 portfolio <- if (file.exists(portfolio_file)) {
   toupper(trimws(scan(portfolio_file, what = character(), quiet = TRUE)))
 } else {

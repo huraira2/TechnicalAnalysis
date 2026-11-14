@@ -3,13 +3,17 @@
 # BDA400 Assignment 6 | Nadeeka Godage (664430944)
 #
 # Run from the repository folder or the Assignment6 folder:
-#   Rscript Assignment6/test_app.R
+#   Rscript Assignment6/test_app.R      (repository)
+#   Rscript test_app.R                  (inside the app folder)
 # Uses shiny::testServer() to set the widgets, render each chart and check the
 # results and the error messages. Charts are saved to a temporary folder.
 # =============================================================================
 
 library(shiny)
-if (!file.exists("app.R")) setwd("Assignment6")
+if (!file.exists("app.R")) {
+  # run from the repository folder, or from the folder that holds the unzipped app
+  setwd(if (dir.exists("Assignment6")) "Assignment6" else "NadeekaGodage_BDA400_A06")
+}
 app <- shinyAppDir(".")
 chart_dir <- file.path(tempdir(), "dashboard_charts")
 dir.create(chart_dir, showWarnings = FALSE)
